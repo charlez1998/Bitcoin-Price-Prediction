@@ -13,8 +13,6 @@ tweet_df = scrape("https://bitinfocharts.com/comparison/bitcoin-tweets.html")
 mc_df = scrape("https://bitinfocharts.com/comparison/bitcoin-marketcap.html#3y")
 
 
-
-
 #check for all null values
 print(price_df.isnull().sum())
 print(tweet_df[pd.isnull(tweet_df['Tweets'])])
@@ -57,4 +55,4 @@ df = pd.merge(merge1, final_mc, left_index=True, right_index=True)
 df["Marketcap"] = pd.to_numeric(df["Marketcap"], downcast="float")
 df['Proportion Traded'] = df['Volume']/df['Marketcap']
 
-#check kaggle for more data cleaning 
+df.to_csv('cleaned_data.csv')
