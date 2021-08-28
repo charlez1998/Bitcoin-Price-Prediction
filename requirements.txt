@@ -1,5 +1,5 @@
 alabaster @ file:///home/ktietz/src/ci/alabaster_1611921544520/work
-anaconda-client==1.7.2
+anaconda-client==1.2.2
 anaconda-project @ file:///tmp/build/80754af9/anaconda-project_1610472525955/work
 anyio @ file:///C:/ci/anyio_1620153418380/work/dist
 appdirs==1.4.4
