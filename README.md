@@ -1,3 +1,8 @@
-# Stock-Price-Prediction
-## Resources Used
-**Article:** https://medium.datadriveninvestor.com/using-monte-carlo-simulation-to-determine-the-optimal-portfolio-of-stocks-d7aabfddd6a1
+# Bitcoin Price Prediction: Project Overview
+## Code and Resources Used
+## Web Scraping
+## Data Cleaning
+## EDA
+## Model Building 
+## Model Performance 
+## Productionization 
