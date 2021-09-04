@@ -38,9 +38,9 @@ def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
     return agg
 
 # load dataset
-df = pd.read_csv('cleaned_data2.csv')
-my_df = df.drop(columns=["Date", "Unnamed: 0", "Volume", "Tweets", "Marketcap", "Proportion Traded"])
-values = my_df.values
+df = pd.read_csv('cleaned_data2.csv', index_col = 1)
+df.drop(columns = ['Unnamed: 0', "Volume", "Tweets", "Marketcap", "Proportion Traded"], inplace = True)
+values = df.values
 # ensure all data is float
 values = values.astype('float32')
 # normalize features
@@ -48,10 +48,11 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 scaled = scaler.fit_transform(values)
 # frame as supervised learning
 reframed = series_to_supervised(scaled, 1, 1)
+reframed.drop(reframed.columns[[6,7,8,9]], axis=1, inplace=True)
 
 values = reframed.values
-train = values[:365, :]
-test = values[365:, :]
+train = values[:724, :]
+test = values[724:, :]
 # split into input and outputs
 train_X, train_y = train[:, :-1], train[:, -1]
 test_X, test_y = test[:, :-1], test[:, -1]
