@@ -1,13 +1,12 @@
 from math import sqrt
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
 from numpy import concatenate
-from matplotlib import pyplot
-from pandas import read_csv
+from matplotlib import pyplot as plt
+import seaborn as sns
 from pandas import DataFrame
 from pandas import concat
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.preprocessing import LabelEncoder
+#from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error
 from keras.models import Sequential
 from keras.layers import Dense
@@ -39,7 +38,7 @@ def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
 
 # load dataset
 df = pd.read_csv('cleaned_data2.csv', index_col = 1)
-df.drop(columns = ['Unnamed: 0', "Volume", "Tweets", "Marketcap", "Proportion Traded"], inplace = True)
+df.drop(columns = ['Unnamed: 0', "Volume", "Marketcap", "Proportion Traded"], inplace = True)
 values = df.values
 # ensure all data is float
 values = values.astype('float32')
@@ -48,7 +47,7 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 scaled = scaler.fit_transform(values)
 # frame as supervised learning
 reframed = series_to_supervised(scaled, 1, 1)
-reframed.drop(reframed.columns[[6,7,8,9]], axis=1, inplace=True)
+reframed.drop(reframed.columns[[7,8,9,10,11]], axis=1, inplace=True)
 
 values = reframed.values
 train = values[:724, :]
@@ -69,10 +68,10 @@ model.compile(loss='mae', optimizer='adam')
 # fit network
 history = model.fit(train_X, train_y, epochs=50, batch_size=72, validation_data=(test_X, test_y), verbose=2, shuffle=False)
 # plot history
-pyplot.plot(history.history['loss'], label='train')
-pyplot.plot(history.history['val_loss'], label='test')
-pyplot.legend()
-pyplot.show()
+plt.plot(history.history['loss'], label='train')
+plt.plot(history.history['val_loss'], label='test')
+plt.legend()
+plt.show()
 
 # make a prediction
 yhat = model.predict(test_X)
@@ -89,3 +88,19 @@ inv_y = inv_y[:,0]
 # calculate RMSE
 rmse = sqrt(mean_squared_error(inv_y, inv_yhat))
 print('Test RMSE: %.3f' % rmse)
+
+index_reset = df.reset_index(level=0)
+grab_dates = index_reset['Date'][725:]
+
+dates = pd.DataFrame(grab_dates).reset_index().drop(columns = ['index'])
+price_actual = pd.DataFrame({"Open Price": inv_y})
+price_prediction = pd.DataFrame({'Open Price Prediction' : inv_yhat})
+
+actual_df = dates.join(price_actual)
+actual_df['Date'] = pd.to_datetime(actual_df['Date'])
+prediction_df = dates.join(price_prediction)
+prediction_df['Date'] = pd.to_datetime(prediction_df['Date'])
+
+sns.lineplot(actual_df['Date'], actual_df['Open Price'])
+sns.lineplot(prediction_df['Date'], prediction_df['Open Price Prediction'])
+plt.show()
