@@ -50,8 +50,8 @@ reframed = series_to_supervised(scaled, 1, 1)
 reframed.drop(reframed.columns[[7,8,9,10,11]], axis=1, inplace=True)
 
 values = reframed.values
-train = values[:724, :]
-test = values[724:, :]
+train = values[:372, :]
+test = values[372:, :]
 # split into input and outputs
 train_X, train_y = train[:, :-1], train[:, -1]
 test_X, test_y = test[:, :-1], test[:, -1]
@@ -62,7 +62,7 @@ print(train_X.shape, train_y.shape, test_X.shape, test_y.shape)
 
 # design network
 model = Sequential()
-model.add(LSTM(50, input_shape=(train_X.shape[1], train_X.shape[2])))
+model.add(LSTM(1500, input_shape=(train_X.shape[1], train_X.shape[2])))
 model.add(Dense(1))
 model.compile(loss='mae', optimizer='adam')
 # fit network
@@ -89,8 +89,13 @@ inv_y = inv_y[:,0]
 rmse = sqrt(mean_squared_error(inv_y, inv_yhat))
 print('Test RMSE: %.3f' % rmse)
 
+#Average RMSE for n_nodes = 100 ranges from 3200 to 3300
+#Average RMSE for n_nodes = 1500: 843.5
+
+#For Visualization:
+
 index_reset = df.reset_index(level=0)
-grab_dates = index_reset['Date'][725:]
+grab_dates = index_reset['Date'][373:]
 
 dates = pd.DataFrame(grab_dates).reset_index().drop(columns = ['index'])
 price_actual = pd.DataFrame({"Open Price": inv_y})
