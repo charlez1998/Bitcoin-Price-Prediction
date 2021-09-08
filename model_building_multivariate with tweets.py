@@ -6,12 +6,10 @@ import seaborn as sns
 from pandas import DataFrame
 from pandas import concat
 from sklearn.preprocessing import MinMaxScaler
-#from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_squared_error
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
-
 
 def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
     n_vars = 1 if type(data) is list else data.shape[1]
@@ -50,8 +48,8 @@ reframed = series_to_supervised(scaled, 1, 1)
 reframed.drop(reframed.columns[[7,8,9,10,11]], axis=1, inplace=True)
 
 values = reframed.values
-train = values[:372, :]
-test = values[372:, :]
+train = values[:-372, :]
+test = values[-372:, :]
 # split into input and outputs
 train_X, train_y = train[:, :-1], train[:, -1]
 test_X, test_y = test[:, :-1], test[:, -1]
@@ -89,13 +87,10 @@ inv_y = inv_y[:,0]
 rmse = sqrt(mean_squared_error(inv_y, inv_yhat))
 print('Test RMSE: %.3f' % rmse)
 
-#Average RMSE for n_nodes = 100 ranges from 3200 to 3300
-#Average RMSE for n_nodes = 1500: 843.5
-
 #For Visualization:
 
 index_reset = df.reset_index(level=0)
-grab_dates = index_reset['Date'][373:]
+grab_dates = index_reset['Date'][-372:]
 
 dates = pd.DataFrame(grab_dates).reset_index().drop(columns = ['index'])
 price_actual = pd.DataFrame({"Open Price": inv_y})

@@ -62,7 +62,6 @@ def model_fit(train, config):
     model.fit(train_x, train_y, epochs=n_epochs, batch_size=n_batch, verbose=0)
     return model
 
-
 # forecast with a pre-fit model
 def model_predict(model, history, config):
     # unpack config
@@ -76,7 +75,6 @@ def model_predict(model, history, config):
     # forecast
     yhat = model.predict(x_input, verbose=0)
     return correction + yhat[0]
-
 
 # walk-forward validation for univariate data
 def walk_forward_validation(data, n_test, cfg):
@@ -118,14 +116,13 @@ def get_predictions(data, n_test, cfg):
         history.append(test[i])
     return predictions
 
-
 # repeat evaluation of a config
 def repeat_evaluate(data, config, n_test, n_repeats=30):
     # fit and evaluate the model n times
     scores = [walk_forward_validation(data, n_test, config) for _ in range(n_repeats)]
     return scores
-#
-# # summarize model performance
+
+# summarize model performance
 def summarize_scores(name, scores):
     # print a summary
     scores_m, score_std = mean(scores), std(scores)
@@ -134,13 +131,13 @@ def summarize_scores(name, scores):
     plt.boxplot(scores)
     plt.show()
 
-
+#Execute:
 dataframe = read_csv('cleaned_data2.csv')
 dataframe = dataframe.loc[:, 'Date': 'Open']
 dataframe.set_index("Date", inplace = True)
 data = dataframe.values
 # data split
-n_test = 724
+n_test = 372
 # define config
 config = [12, 100, 50, 150, 12]
 # grid search
@@ -170,36 +167,9 @@ plt.show()
 #https://machinelearningmastery.com/how-to-develop-deep-learning-models-for-univariate-time-series-forecasting/
 #Maybe: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
 
-#  > 1952.760
-#  > 1826.202
-#  > 2000.913
-#  > 1943.700
-#  > 1964.927
-#  > 2008.064
-#  > 2002.371
-#  > 2078.903
-#  > 2013.602
-#  > 1877.795
-#  > 1880.559
-#  > 1879.515
-#  > 2122.778
-#  > 2262.917
-#  > 1989.743
-#  > 2082.960
-#  > 1914.393
-#  > 2387.153
-#  > 1934.015
-#  > 2600.327
-#  > 1833.498
-#  > 1995.106
-#  > 2009.334
-#  > 2035.968
-#  > 2243.904
-#  > 2064.154
-#  > 2136.870
-#  > 1927.444
-#  > 2070.863
-#  > 1907.270
-# lstm: 2031.600 RMSE (+/- 163.358)
-#
-# Process finished with exit code 0
+# from sklearn.metrics import mean_squared_error
+# get_predictions = get_predictions(data, n_test, config)
+# prediction = pd.DataFrame(get_predictions)
+# prediction_66 = prediction[-362:]
+# data_66 = data[-362:]
+# print(sqrt(mean_squared_error(data_66, prediction_66)))

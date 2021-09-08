@@ -10,8 +10,6 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
 
-import pandas as pd
-
 # split a univariate dataset into train/test sets
 def train_test_split(data, n_test):
     return data[:-n_test], data[-n_test:]
@@ -127,12 +125,11 @@ def grid_search(data, cfg_list, n_test):
     scores.sort(key=lambda tup: tup[1])
     return scores
 
-
 # create a list of configs to try
 def model_configs():
     # define scope of configs
     n_input = [12]
-    n_nodes = [100]
+    n_nodes = [250, 500, 1000, 1500]
     n_epochs = [50]
     n_batch = [150]
     n_diff = [12]
@@ -149,12 +146,12 @@ def model_configs():
     return configs
 
 # define dataset
-dataframe = pd.read_csv('cleaned_data2.csv')
+dataframe = read_csv('cleaned_data2.csv')
 dataframe = dataframe.loc[:, 'Date': 'Open']
 dataframe.set_index("Date", inplace = True)
 data = dataframe.values
 # data split
-n_test = 724
+n_test = 372
 # model configs
 cfg_list = model_configs()
 # grid search
@@ -190,6 +187,56 @@ for cfg, error in scores[:3]:
 # [12, 50, 100, 150, 12] 2706.545733230764
 # [12, 50, 50, 1, 12] 2713.2154904638023
 
+#  > 2621.288
+#  > 2771.422
+#  > 3131.051
+#  > 2660.653
+#  > 2762.964
+#  > 3198.921
+#  > 2721.295
+#  > 3115.270
+#  > 2662.077
+#  > 2657.325
+# > Model[[12, 250, 50, 150, 12]] 2830.227
+#  > 3108.886
+#  > 2736.554
+#  > 2594.440
+#  > 2900.542
+#  > 2761.657
+#  > 2650.843
+#  > 2585.942
+#  > 3010.540
+#  > 2463.427
+#  > 2872.317
+# > Model[[12, 500, 50, 150, 12]] 2768.515
+#  > 3191.275
+#  > 2806.888
+#  > 3064.058
+#  > 2816.165
+#  > 2732.516
+#  > 2993.150
+#  > 3401.809
+#  > 3872.023
+#  > 2659.553
+#  > 3520.360
+# > Model[[12, 1000, 50, 150, 12]] 3105.780
+#  > 2890.810
+#  > 3962.939
+#  > 2939.034
+#  > 2669.386
+#  > 2918.318
+#  > 2860.747
+#  > 3027.925
+#  > 2793.827
+#  > 2952.414
+#  > 4985.000
+# > Model[[12, 1500, 50, 150, 12]] 3200.040
+# done
+# [12, 500, 50, 150, 12] 2768.514814379285
+# [12, 250, 50, 150, 12] 2830.226575589553
+# [12, 1000, 50, 150, 12] 3105.779779754865
+
+
 #For n_test = 877
 # > Model[[12, 100, 50, 150, 12]] 2211.491
 
@@ -199,3 +246,4 @@ for cfg, error in scores[:3]:
 # n_epochs: 50
 # n_batch: 150
 # n_diff: 12
+
