@@ -166,10 +166,3 @@ plt.show()
 
 #https://machinelearningmastery.com/how-to-develop-deep-learning-models-for-univariate-time-series-forecasting/
 #Maybe: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
-
-# from sklearn.metrics import mean_squared_error
-# get_predictions = get_predictions(data, n_test, config)
-# prediction = pd.DataFrame(get_predictions)
-# prediction_66 = prediction[-362:]
-# data_66 = data[-362:]
-# print(sqrt(mean_squared_error(data_66, prediction_66)))

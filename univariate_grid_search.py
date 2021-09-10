@@ -30,7 +30,6 @@ def series_to_supervised(data, n_in=1, n_out=1):
     agg.dropna(inplace=True)
     return agg.values
 
-
 # root mean squared error or rmse
 def measure_rmse(actual, predicted):
     return sqrt(mean_squared_error(actual, predicted))
