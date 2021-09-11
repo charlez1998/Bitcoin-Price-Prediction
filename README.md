@@ -14,6 +14,7 @@ Bitcoin Price Dataset Used: https://finance.yahoo.com/quote/BTC-USD/history?p=BT
 Referenced Sites: 
 * https://coinmarketcap.com/currencies/bitcoin/historical-data/
 * https://bitinfocharts.com/comparison/bitcoin-tweets.html#3y
+
 Consolidated Articles: 
 * https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
 * https://machinelearningmastery.com/multivariate-time-series-forecasting-lstms-keras/
