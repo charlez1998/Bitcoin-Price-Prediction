@@ -7,6 +7,7 @@ Python Version: 3.8
 Packages: pandas, numpy, sklearn, matplotlib, seaborn, keras
 For Web Framework Requirements: pip install -r requirements.txt
 Bitcoin Price Dataset Used: https://finance.yahoo.com/quote/BTC-USD/history?p=BTC-USD
+
 Referenced Sites: 
 * https://coinmarketcap.com/currencies/bitcoin/historical-data/
 * https://bitinfocharts.com/comparison/bitcoin-tweets.html#3y
@@ -28,7 +29,7 @@ After scraping the data, I needed to clean it up so that it would be useable for
 ## Model Building
 All models described below only pertain to the univariate case. Implementing a multivariate model is doable for one time step but is significantly more complicated when attempting to forecast several time periods (multi-steps) into the future and hence a univariate model was favored in predicting 7 days into the future.
 
-I tried four different models and evaluated their configurations in the grid search using the Root Mean Squared Error. I chose RMSE in order to account for the volatility and high likelihood of outliers in this type of investigation. 
+I tried four different models and evaluated their configurations in the grid search using Root Mean Squared Error. I chose RMSE in order to account for the volatility and high likelihood of outliers in this type of investigation. 
 
 Here are the four different models:
 
