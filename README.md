@@ -4,8 +4,11 @@
 * Optimized the Stacked LSTM Model using a grid search to reach the best model.
 ## Code and Resources Used
 Python Version: 3.8
+
 Packages: pandas, numpy, sklearn, matplotlib, seaborn, keras
+
 For Web Framework Requirements: pip install -r requirements.txt
+
 Bitcoin Price Dataset Used: https://finance.yahoo.com/quote/BTC-USD/history?p=BTC-USD
 
 Referenced Sites: 
