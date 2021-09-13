@@ -33,11 +33,13 @@ After scraping the data, I needed to clean it up so that it would be useable for
  Below are some of the few highlights:
  
  ![](correlation_visual.png) 
+ 
+ The correlations above is most noticable observing the trend of Bitcoin related tweets in relation to Bitcoin price during the start of 2021:
  ![](tweets_price.png)
  ![](decomposition_visual.png)
 
 ## Model Building
-All models described below only pertain to the univariate case. Implementing a multivariate model is doable for one time step but is significantly more complicated when attempting to forecast several time periods (multi-steps) into the future and hence a univariate model was favored in predicting 7 days into the future.
+All models described below only pertain to the univariate case. Implementing a multivariate model is doable for one time step but is significantly more complicated when attempting to forecast several time periods (multi-steps) into the future and hence a univariate model was favored in predicting several weeks into the future.
 
 I tried four different models and evaluated their configurations in the grid search using Root Mean Squared Error. I chose RMSE in order to account for the volatility and high likelihood of outliers in this type of investigation. 
 
