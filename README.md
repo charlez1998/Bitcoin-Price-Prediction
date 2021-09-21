@@ -1,5 +1,5 @@
 # Bitcoin Price Prediction: Project Overview
-* Created a tool that estimates Bitcoin Price (MAE ~ $900 - 920 USD) for every day in the coming month. 
+* Built a model that estimates Bitcoin Price (MAE ~ $900 - 920 USD) for every day in the coming month. 
 * Scraped Bitcoin related Tweets and Market Cap for the current day all the way to 3 years ago which may aid in price estimation. 
 * Optimized the Stacked LSTM Model using a grid search to reach the best model.
 ## Code and Resources Used
