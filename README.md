@@ -1,5 +1,5 @@
 # Bitcoin Price Prediction: Project Overview
-* Built a model that estimates Bitcoin Price (MAE ~ $900 - 920 USD) for every day in the coming month. 
+* Built a model that estimates Bitcoin Price (MAE ~ $1450 - 1500 USD) for every day in the coming month. 
 * Scraped Bitcoin related Tweets and Market Cap for the current day all the way to 3 years ago which may aid in price estimation. 
 * Optimized the Stacked LSTM Model using a grid search to reach the best model.
 ## Code and Resources Used
@@ -55,7 +55,7 @@ Deep Learning Models:
 The Bidirectional model outperformed the other approaches on the test and validation sets. Given the stochastic nature of the algorithm and evaluation procedure, I ran each model ten times to compare the average outcome: 
 * ARIMA: RMSE = 3662, MAE = 3595
 * Vanilla LSTM: RMSE = 3130, MAE = 3022
-* Stacked LSTM with 1 Hidden Dense Layer: RMSE = 1339, MAE = 980
-* Bidirectional LSTM: RMSE = 1277 , MAE = 916
+* Stacked LSTM with 1 Hidden Dense Layer: RMSE = 1539, MAE = 1514
+* Bidirectional LSTM: RMSE = 1509 , MAE = 1478
 ## Productionization
 The goal is to have a local webserver regularly forecast these prices every single day.

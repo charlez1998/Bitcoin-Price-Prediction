@@ -165,4 +165,3 @@ sns.lineplot(prediction_df['Date'], prediction_df['Open Price Prediction'])
 plt.show()
 
 #https://machinelearningmastery.com/how-to-develop-deep-learning-models-for-univariate-time-series-forecasting/
-#Maybe: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
