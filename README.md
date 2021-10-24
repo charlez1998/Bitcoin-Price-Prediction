@@ -16,6 +16,7 @@ Referenced Sites:
 * https://bitinfocharts.com/comparison/bitcoin-tweets.html#3y
 
 Consolidated Articles: 
+* https://machinelearningmastery.com/how-to-develop-deep-learning-models-for-univariate-time-series-forecasting/ 
 * https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
 * https://machinelearningmastery.com/multivariate-time-series-forecasting-lstms-keras/
 * https://machinelearningmastery.com/how-to-grid-search-deep-learning-models-for-time-series-forecasting/
